@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    
+    <head> 
+        <title>Assignment2</title>
+    </head>
+
+    <style>
+        
+        body {
+            margin: 0;
+        }
+        
+        #create {
+            position: fixed;
+            display: inline-block;
+            top: 1.5%;
+            left: 2%;
+        }
+        
+        #clear {
+            position: fixed;
+            display: inline-block;
+            top: 1.5%;
+            right: 2%;
+        }
+        
+        #posterDiv {
+            margin: 2%;
+            margin-left: 22.5%;
+            background-color: aquamarine;
+            width: 60vw;
+            height: auto;
+            position: absolute;
+        }
+        
+        .input {
+            margin-left: 8%;
+            margin-top: 1%;
+            position: relative;
+            display: block;
+        }
+        
+        .pic {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            display: inline-block;
+        }
+
+        .slidingDivs {
+            bottom: -500px;
+            left: 0;
+            width: 100vw;
+            height: 10vh;
+            background-color: darkgoldenrod;
+            text-align: center;
+            position: fixed;
+            transition: bottom .5s;
+            font-size: 50px;
+        }
+    </style>
+            
+    <body>
+        
+        <div id="messageBox">
+            <button id="create">Create</button>
+            <input type="text" placeholder="Message" id="msg" class="input" />
+            <input type="text" placeholder="Image URL" id="img" class="input" />
+            <input type="text" placeholder="DIV description" id="descr" class="input" />
+            <button id ="clear">Clear Body</button>
+        </div>
+        
+        <div id="posterDiv"></div>
+        <div id="createdBox" class = "slidingDivs">Created item</div>
+        <div id="clearedBox" class = "slidingDivs">Cleared items</div>
+        
+        <script>
+        
+            var createBut = document.getElementById("create");
+            var clearBut = document.getElementById("clear");
+            var msgInput = document.getElementById("msg");
+            var imgInput = document.getElementById("img");
+            var descrInput = document.getElementById("descr");
+            var display = document.getElementById("posterDiv");
+            var createdDiv = document.getElementById("createdBox");
+            var clearedDiv = document.getElementById("clearedBox");
+            
+            createBut.onclick = function() {
+                
+                var newDiv = document.createElement("div");
+                display.appendChild(newDiv);
+                newDiv.style.width = "56vw";
+                newDiv.style.height = "20vh";
+                newDiv.style.backgroundColor = "#FBA";
+                newDiv.style.margin = "20px", "50px", "20px", "50px";
+                newDiv.style.marginLeft = "25px";
+                newDiv.style.paddingTop = "20px";
+                newDiv.style.paddingLeft = "15px";
+                newDiv.style.paddingRight = "15px";
+                newDiv.style.paddingBottom = "40px";
+                
+                var newTitle = document.createElement("div")
+                newTitle.style.width = "70%";
+                newTitle.style.height = "auto";
+                newTitle.style.backgroundColor = "#B182DE";
+                newTitle.style.marginLeft = "20%";
+                newTitle.style.display = "inline-block";
+                newTitle.style.textAlign = "center";
+                newTitle.style.position = "absolute";
+                newTitle.innerHTML = msgInput.value;
+                                
+                var newDescription = document.createElement("div");
+                newDescription.style.backgroundColor = "#EB4";
+                newDescription.style.width = "70%";
+                newDescription.style.height = "auto";
+                newDescription.style.marginLeft = "20%";
+                newDescription.style.marginTop = "12%";
+                newDescription.style.display = "inline-block";
+                newDescription.style.position = "absolute";
+                newDescription.style.textAlign = "center";
+                newDescription.innerHTML = descrInput.value;
+                
+                var newPic = document.createElement("img");
+                newPic.className = "pic";
+                newDiv.appendChild(newPic);
+                
+                newDiv.appendChild(newTitle);
+                newDiv.appendChild(newDescription);
+                newPic.src = imgInput.value;
+                
+                createdDiv.style.bottom = "0px";
+                clearedDiv.style.bottom = "-500px";
+                
+            }
+            
+            clearBut.onclick = function() {
+                display.innerHTML = "";
+                createdDiv.style.bottom = "-500px";
+                clearedDiv.style.bottom = "0px";
+            }
+                        
+        </script>
+        
+    </body>
+
+</html>
